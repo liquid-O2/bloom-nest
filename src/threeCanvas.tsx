@@ -9,7 +9,7 @@ import vertex from './shaders/vertex.glsl'
 export default function ThreeCanvas() {
   return (
     <div className='h-screen w-screen '>
-      <Canvas>
+      <Canvas camera={{ position: [0, 0, 4] }}>
         <Box />
         <ambientLight />
         <OrbitControls />
@@ -21,11 +21,11 @@ export default function ThreeCanvas() {
 const Box = () => {
   const meshRef = useRef<Mesh>(null!)
 
-  useFrame((state, delta) => (meshRef.current.rotation.z += delta/10))
+  // useFrame((state, delta) => (meshRef.current.rotation.z += delta / 10))
 
   return (
     <mesh ref={meshRef}>
-      <planeGeometry args={[3, 3, 80, 80]} />
+      <planeGeometry args={[3, 3, 150, 150]} />
       <shaderMaterial fragmentShader={fragment} vertexShader={vertex} side={DoubleSide} wireframe />
     </mesh>
   )
